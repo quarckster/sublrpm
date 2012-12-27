@@ -2,7 +2,11 @@ Name: sublimetext
 Version: 2.0.1
 Release: 1
 Group: Applications/Develop
+%ifarch x86_64
 Source: Sublime Text %{version} x64.tar.bz2
+%else
+Source: Sublime Text %{version}.tar.bz2
+%endif
 Summary: Sublime Text 2
 URL: http://www.sublimetext.com/2
 License: EULA
