@@ -1,7 +1,7 @@
 Name: sublimetext
 Version: 2.0.1
 Release: 1
-Group: Applications/Develop
+Group: Applications/Editors
 %ifarch x86_64
 Source: Sublime Text %{version} x64.tar.bz2
 %else
@@ -13,6 +13,21 @@ License: EULA
 BuildRoot: %{_tmppath}/%{name}-root
 Vendor: Sublime Text Authors
 Requires: python >= 2.6
+Requires: libgobject-2.0.so.0
+Requires: librt.so.1
+Requires: libglib-2.0.so.0
+Requires: libpthread.so.0
+Requires: libdl.so.2
+Requires: libutil.so.1
+Requires: libX11.so.6
+Requires: libstdc++.so.6
+Requires: libm.so.6
+Requires: libgcc_s.so.1
+Requires: libc.so.6
+Requires: libgthread-2.0.so.0
+Requires: libffi.so.5
+Requires: libxcb.so.1
+Requires: libXau.so.6
 
 %description
 Sublime Text 2 for GNU/Linux
