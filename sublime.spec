@@ -1,6 +1,10 @@
+# Let's disable compilation of Python scripts and modules and debug packages.
+%global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
+%define debug_package %{nil}
+
 Name: sublimetext
 Version: 2.0.2
-Release: 1
+Release: 2
 Group: Applications/Editors
 %ifarch x86_64
 Source: Sublime Text %{version} x64.tar.bz2
@@ -30,12 +34,15 @@ Requires: libxcb.so.1
 Requires: libXau.so.6
 
 %description
-Sublime Text 2 for GNU/Linux
+Sublime Text 2 for GNU/Linux is a sophisticated text editor for code, markup and prose.
 
 %prep
 %setup -q -c -n %{name}
 
 %build
+# Do nothing...
+
+%install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/applications/
 mkdir -p %{buildroot}/opt/%{name}/
@@ -43,8 +50,10 @@ wget https://github.com/xvitaly/sublrpm/raw/master/%{name}.desktop -O %{buildroo
 mv "%_builddir/%{name}/Sublime Text 2" %_builddir/%{name}/%{name}
 cp -fpr %_builddir/%{name}/%{name}/* %{buildroot}/opt/%{name}/
 chmod +x %{buildroot}/opt/%{name}/sublime_text
-
-%install
 find %{buildroot} -not -type d -printf "\"/%%P\"\n" | sed '/\/man\//s/$/\*/' > manifest
 
 %files -f manifest
+
+%changelog
+* Sun Dec 21 2014 V1TSK <vitaly@easycoding.org>
+- Updated SPEC and desktop files for openSUSE 13.2 and Fedora 21+ support.
