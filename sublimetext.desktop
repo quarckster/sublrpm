@@ -1,6 +1,9 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
+GenericName=Text Editor
+GenericName[ru]=Текстовый редактор
 Name=Sublime Text 2
+Name[ru]=Sublime Text 2
 Comment=Edit text files
 Exec=/opt/sublimetext/sublime_text
 Icon=/opt/sublimetext/Icon/128x128/sublime_text.png
@@ -8,3 +11,4 @@ Terminal=false
 Type=Application
 Encoding=UTF-8
 Categories=Utility;TextEditor;
+MimeType=text/plain;
