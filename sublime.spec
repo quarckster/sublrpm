@@ -2,17 +2,19 @@
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 %define debug_package %{nil}
 
+%define archive_name sublime_text_3_build_3065
+
 Name: sublimetext
-Version: 2.0.2
-Release: 3
+Version: 3.0.3065
+Release: 1
 Group: Applications/Editors
 %ifarch x86_64
-Source: Sublime Text %{version} x64.tar.bz2
+Source: %{archive_name}_x64.tar.bz2
 %else
-Source: Sublime Text %{version}.tar.bz2
+Source: %{archive_name}_x32.tar.bz2
 %endif
-Summary: Sublime Text 2
-URL: http://www.sublimetext.com/2
+Summary: Sublime Text 3
+URL: http://www.sublimetext.com/3
 License: EULA
 BuildRoot: %{_tmppath}/%{name}-root
 Vendor: Sublime Text Authors
@@ -34,7 +36,7 @@ Requires: libxcb.so.1
 Requires: libXau.so.6
 
 %description
-Sublime Text 2 for GNU/Linux is a sophisticated text editor for code, markup and prose.
+Sublime Text 3 for GNU/Linux is a sophisticated text editor for code, markup and prose.
 
 %prep
 %setup -q -c -n %{name}
@@ -51,8 +53,9 @@ mkdir -p %{buildroot}/usr/share/applications/
 mkdir -p %{buildroot}/opt/%{name}/
 
 # Installing to working directory from official package...
-mv "%_builddir/%{name}/Sublime Text 2" %_builddir/%{name}/%{name}
+mv "%_builddir/%{name}/sublime_text_3" %_builddir/%{name}/%{name}
 cp -fpr %_builddir/%{name}/%{name}/* %{buildroot}/opt/%{name}/
+rm -f %{buildroot}/opt/%{name}/sublime_text.desktop
 chmod +x %{buildroot}/opt/%{name}/sublime_text
 
 # Creating desktop icon...
@@ -76,5 +79,8 @@ find %{buildroot} -not -type d -printf "\"/%%P\"\n" | sed '/\/man\//s/$/\*/' > m
 %files -f manifest
 
 %changelog
+* Sat Jan 24 2015 V1TSK <vitaly@easycoding.org>
+- Updated SPEC for Sublime Text 3 support.
+
 * Sun Dec 21 2014 V1TSK <vitaly@easycoding.org>
 - Updated SPEC and desktop files for openSUSE 13.2 and Fedora 21+ support.
