@@ -16,20 +16,16 @@ URL: http://www.sublimetext.com/3
 License: EULA
 BuildRoot: %{_tmppath}/%{name}-root
 Vendor: Sublime Text Authors
-Requires: python >= 2.6
+Requires: linux-vdso.so.1
 Requires: libgobject-2.0.so.0
 Requires: librt.so.1
 Requires: libglib-2.0.so.0
 Requires: libpthread.so.0
 Requires: libdl.so.2
-Requires: libutil.so.1
 Requires: libX11.so.6
-Requires: libstdc++.so.6
 Requires: libm.so.6
-Requires: libgcc_s.so.1
 Requires: libc.so.6
-Requires: libgthread-2.0.so.0
-Requires: libffi.so.5
+Requires: libffi.so.6
 Requires: libxcb.so.1
 Requires: libXau.so.6
 Obsoletes: sublimetext
@@ -61,8 +57,8 @@ chmod +x %{buildroot}/opt/%{name}/sublime_text
 echo "[Desktop Entry]" > %{buildroot}/usr/share/applications/%{name}.desktop
 echo "GenericName=Text Editor" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "GenericName[ru]=Текстовый редактор" >> %{buildroot}/usr/share/applications/%{name}.desktop
-echo "Name=Sublime Text 2" >> %{buildroot}/usr/share/applications/%{name}.desktop
-echo "Name[ru]=Sublime Text 2" >> %{buildroot}/usr/share/applications/%{name}.desktop
+echo "Name=Sublime Text 3" >> %{buildroot}/usr/share/applications/%{name}.desktop
+echo "Name[ru]=Sublime Text 3" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Comment=Edit text files" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Exec=/opt/%{name}/sublime_text" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Icon=/opt/%{name}/Icon/256x256/sublime-text.png" >> %{buildroot}/usr/share/applications/%{name}.desktop
