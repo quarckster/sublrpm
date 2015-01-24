@@ -16,7 +16,6 @@ URL: http://www.sublimetext.com/3
 License: EULA
 BuildRoot: %{_tmppath}/%{name}-root
 Vendor: Sublime Text Authors
-Requires: linux-vdso.so.1
 Requires: libgobject-2.0.so.0
 Requires: librt.so.1
 Requires: libglib-2.0.so.0
