@@ -2,16 +2,14 @@
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 %define debug_package %{nil}
 
-%define archive_name sublime_text_3_build_3065
-
-Name: sublimetext
-Version: 3.0.3065
-Release: 1
+Name: sublime_text
+Version: 3.0
+Release: 3065
 Group: Applications/Editors
 %ifarch x86_64
-Source: %{archive_name}_x64.tar.bz2
+Source: %{name}_3_build_%{release}_x64.tar.bz2
 %else
-Source: %{archive_name}_x32.tar.bz2
+Source: %{name}_3_build_%{release}_x32.tar.bz2
 %endif
 Summary: Sublime Text 3
 URL: http://www.sublimetext.com/3
@@ -34,6 +32,7 @@ Requires: libgthread-2.0.so.0
 Requires: libffi.so.5
 Requires: libxcb.so.1
 Requires: libXau.so.6
+Obsoletes: sublimetext
 
 %description
 Sublime Text 3 for GNU/Linux is a sophisticated text editor for code, markup and prose.
