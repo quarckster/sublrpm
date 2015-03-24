@@ -2,39 +2,35 @@
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-python-bytecompile[[:space:]].*$!!g')
 %define debug_package %{nil}
 
-Name: sublimetext
-Version: 2.0.2
-Release: 3
+Name: sublime_text
+Version: 3.0
+Release: 3080
 Group: Applications/Editors
 %ifarch x86_64
-Source: Sublime Text %{version} x64.tar.bz2
+Source: %{name}_3_build_%{release}_x64.tar.bz2
 %else
-Source: Sublime Text %{version}.tar.bz2
+Source: %{name}_3_build_%{release}_x32.tar.bz2
 %endif
-Summary: Sublime Text 2
-URL: http://www.sublimetext.com/2
+Summary: Sublime Text 3
+URL: http://www.sublimetext.com/3
 License: EULA
 BuildRoot: %{_tmppath}/%{name}-root
 Vendor: Sublime Text Authors
-Requires: python >= 2.6
 Requires: libgobject-2.0.so.0
 Requires: librt.so.1
 Requires: libglib-2.0.so.0
 Requires: libpthread.so.0
 Requires: libdl.so.2
-Requires: libutil.so.1
 Requires: libX11.so.6
-Requires: libstdc++.so.6
 Requires: libm.so.6
-Requires: libgcc_s.so.1
 Requires: libc.so.6
-Requires: libgthread-2.0.so.0
-Requires: libffi.so.5
+Requires: libffi.so.6
 Requires: libxcb.so.1
 Requires: libXau.so.6
+Obsoletes: sublimetext
 
 %description
-Sublime Text 2 for GNU/Linux is a sophisticated text editor for code, markup and prose.
+Sublime Text 3 for GNU/Linux is a sophisticated text editor for code, markup and prose.
 
 %prep
 %setup -q -c -n %{name}
@@ -51,19 +47,20 @@ mkdir -p %{buildroot}/usr/share/applications/
 mkdir -p %{buildroot}/opt/%{name}/
 
 # Installing to working directory from official package...
-mv "%_builddir/%{name}/Sublime Text 2" %_builddir/%{name}/%{name}
+mv "%_builddir/%{name}/sublime_text_3" %_builddir/%{name}/%{name}
 cp -fpr %_builddir/%{name}/%{name}/* %{buildroot}/opt/%{name}/
+rm -f %{buildroot}/opt/%{name}/sublime_text.desktop
 chmod +x %{buildroot}/opt/%{name}/sublime_text
 
 # Creating desktop icon...
 echo "[Desktop Entry]" > %{buildroot}/usr/share/applications/%{name}.desktop
 echo "GenericName=Text Editor" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "GenericName[ru]=Текстовый редактор" >> %{buildroot}/usr/share/applications/%{name}.desktop
-echo "Name=Sublime Text 2" >> %{buildroot}/usr/share/applications/%{name}.desktop
-echo "Name[ru]=Sublime Text 2" >> %{buildroot}/usr/share/applications/%{name}.desktop
+echo "Name=Sublime Text 3" >> %{buildroot}/usr/share/applications/%{name}.desktop
+echo "Name[ru]=Sublime Text 3" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Comment=Edit text files" >> %{buildroot}/usr/share/applications/%{name}.desktop
-echo "Exec=/opt/sublimetext/sublime_text" >> %{buildroot}/usr/share/applications/%{name}.desktop
-echo "Icon=/opt/sublimetext/Icon/128x128/sublime_text.png" >> %{buildroot}/usr/share/applications/%{name}.desktop
+echo "Exec=/opt/%{name}/sublime_text" >> %{buildroot}/usr/share/applications/%{name}.desktop
+echo "Icon=/opt/%{name}/Icon/256x256/sublime-text.png" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Terminal=false" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Type=Application" >> %{buildroot}/usr/share/applications/%{name}.desktop
 echo "Encoding=UTF-8" >> %{buildroot}/usr/share/applications/%{name}.desktop
@@ -76,5 +73,8 @@ find %{buildroot} -not -type d -printf "\"/%%P\"\n" | sed '/\/man\//s/$/\*/' > m
 %files -f manifest
 
 %changelog
+* Sat Jan 24 2015 V1TSK <vitaly@easycoding.org>
+- Updated SPEC for Sublime Text 3 support.
+
 * Sun Dec 21 2014 V1TSK <vitaly@easycoding.org>
 - Updated SPEC and desktop files for openSUSE 13.2 and Fedora 21+ support.
