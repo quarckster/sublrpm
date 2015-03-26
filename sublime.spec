@@ -4,7 +4,7 @@
 
 Name: sublime_text
 Version: 3.0
-Release: 3080
+Release: 3083
 Group: Applications/Editors
 %ifarch x86_64
 Source: %{name}_3_build_%{release}_x64.tar.bz2
